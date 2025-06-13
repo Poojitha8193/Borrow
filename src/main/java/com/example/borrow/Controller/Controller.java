@@ -32,14 +32,14 @@ public class Controller {
     public ResponseEntity<?> borrowBook(@RequestBody Borrow borrow) {
         // Validate user
         ResponseEntity<Map> userResponse = restTemplate.getForEntity(
-                "http://localhost:8082/user/" + borrow.getUserId(), Map.class);
+                "https://user55-aya2hge5b6behrgw.eastus2-01.azurewebsites.net/user/" + borrow.getUserId(), Map.class);
         if (!userResponse.getStatusCode().is2xxSuccessful()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
 
         // Validate book
         ResponseEntity<Map> bookResponse = restTemplate.getForEntity(
-                "http://localhost:8081/books/" + borrow.getBookId(), Map.class);
+                "https://books55-hpagafh5ekghcnbj.eastus2-01.azurewebsites.net/books/" + borrow.getBookId(), Map.class);
         if (!bookResponse.getStatusCode().is2xxSuccessful()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book not found");
         }
